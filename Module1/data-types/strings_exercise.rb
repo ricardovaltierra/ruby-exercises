@@ -21,74 +21,89 @@
 # Exercise 1:
 # Use a method to transform the string so that every letter on the string is uppercase
 alice = "alice"
-alice.change_this_method
+alice.upcase!
+puts alice
 #=> ALICE
 
 # Exercise 2:
 # Use a method to transform the string so that only the first letter is uppercase
 alice = "aLiCe"
-alice.change_this_method
+# alice.change_this_method
+alice.capitalize!
+puts alice
 #=> Alice
 
 # Exercise 3:
 # Use a method to transform the string so that it reads backwards
 phrase = "The most inflated egos are often the most fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.reverse!
 #=> ".eligarf tsom eht netfo era soge detalfni tsom ehT"
 
 # Exercise 4:
 # Use a method to transform the string so that every "o" turns to "u"
 phrase = "The most inflated egos are often the most fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.gsub('o', 'u')
 #=> "The must inflated egus are uften the must fragile."
 
 # Exercise 5:
 # Use a method to remove the duplicated ! sign 
 phrase = "Hello World!!"
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.squeeze('!')
 #=> "Hello World!"
 
 # Exercise 6:
 # Use a method to remove the vocals from the string
 phrase = "The most inflated egos are often the most fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.gsub /a|e|i|o|u/, ''
 #=> "Th mst nfltd gs r ftn th mst frgl."
 
 # Exercise 7:
 # Use a method to count all the characters from the string
 phrase = "The most inflated egos are often the most fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.size
 #=> 50
 
 # Exercise 8:
 # Use a method to invert the string case
 phrase = "The most Inflated egOs are ofTen The mOsT Fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.swapcase
 #=> "tHE MOST iNFLATED EGoS ARE OFtEN tHE MoSt fRAGILE."
 
 # Exercise 9:
 # Use a method check if the word 'fragile' exists on the phrase
 phrase = "The most inflated egos are often the most fragile."
-phrase.change_this_method
+# phrase.change_this_method
+puts phrase.include? 'fragile'
 #=> true
 
 # Exercise 10:
 # Concatenate the two provided strings
 greetings = "Hello, my name is:"
 name = "Alice"
+puts greetings << ' ' << name << '!'
 #=> "Hello, my name is: Alice!"
 
 # Exercise 11:
 # Interpolate the two provided strings
 greetings = "Hello, my name is:"
 name = "Alice"
+puts "#{greetings} #{name}!"
 #=> "Hello, my name is: Alice!"
 
 # Exercise 12:
 # Repeat the full message 200 times. Mind the spaces
 greetings = "Hello, my name is:"
 name = "Alice"
+repeated_message = ''
+200.times { repeated_message += "#{greetings} #{name}! " }
 #=> "Hello, my name is: Alice! Hello, my name is: Alice! Hello, my name is: Alice!..."
+puts repeated_message
 
 
 
