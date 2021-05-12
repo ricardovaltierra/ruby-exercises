@@ -28,9 +28,9 @@ integers = (1..100).to_a
 integers.size.times do |i|
   current_integer = integers[i]
   if (current_integer % 2) == 0
-    p " #{current_integer} is an ODD number"
-  else
     p " #{current_integer} is an EVEN number"
+  else
+    p " #{current_integer} is an ODD number"
   end
 end
 
@@ -153,20 +153,20 @@ phrase_array = phrase.split /[,\s]+/
 p " 4.1) print the words that have 2 letters, following this format - The word 'On' has two words"
 phrase_array.size.times do |i|
   current_word = phrase_array[i]
-  p "  The word '#{current_word}' has two words" if current_word.length == 2
+  p "  The word '#{current_word}' has two letters" if current_word.length == 2
 end
 
 p " 4.2) print the words that have more than to 2 letters and less or equal to 5 letters, following this format - The word 'man' has three words"
 phrase_array.size.times do |i|
   current_word = phrase_array[i]
   current_length = current_word.length
-  p "  The word '#{current_word}' has three words" if current_word.length > 2 && current_length <= 5
+  p "  The word '#{current_word}' has three letters" if current_word.length > 2 && current_length <= 5
 end
 
 p " 4.3) print the words that have more than 5 letters, following this format - The word 'offering' has more than 5 words "
 phrase_array.size.times do |i|
   current_word = phrase_array[i]
-  p "  The word '#{current_word}' has more than 5 words" if current_word.length > 5
+  p "  The word '#{current_word}' has more than 5 letters" if current_word.length > 5
 end
 
 p '--'
@@ -175,23 +175,36 @@ p '--'
 p "5) Using a `times` iterator print the even numbers from a given number"
 # Using a `times` iterator print the even numbers from a given number
 number = 100
-number.times do |i|
-  p i if i % 2 != 0
-end
+number.times { |i| p i if i % 2 == 0 }
 
 p '--'
 
 # Exercise 6:
 p "6) Using a `times`, `while` and `until` loops print \"Beetlejuice!\" three times"
 # Using a `times`, `while` and `until` loops print "Beetlejuice!" three times
+
+p " 6.1) times"
+
+3.times do
+  p "  Beetlejuice!"
+end
+
+p " 6.2) while"
+
+counter = 0
+
+while counter <= 2
+  p "  Beetlejuice!"
+  counter += 1  
+end
+
+p " 6.3) until"
+
+counter = 1
 until_flag = false
+
 until until_flag
-  counter = 0
-  while counter <= 2
-    3.times do
-      p " Beetlejuice!"
-      counter += 1
-    end
-    until_flag = !until_flag
-  end
+  p "  Beetlejuice!"
+  counter += 1
+  until_flag = !until_flag if counter == 4
 end
