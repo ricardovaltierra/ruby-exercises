@@ -1,3 +1,4 @@
+require 'set'
 # Ruby Dojo
 # Docs:
 # https://ruby-doc.org/core-3.0.1/
@@ -37,3 +38,127 @@
 #   6. Move all the methods from the Car class to the Vehicle
 #   7. Write a method called age that calls a private method to calculate the age of the vehicle. Make sure the private method is not available from outside of the class.
 #      You'll need to use Ruby's built-in Time class to help.
+
+class Vehicle
+  attr_reader :color
+
+  @@vehicles = 0
+
+  def initialize(year, model, color)
+    @@vehicles += 1
+    @speed = 0
+    @year = year
+    @model = model
+    @color = color
+  end
+
+  def gas_mileage(gallons, miles)
+    miles / gallons
+  end
+
+  def self.count
+    @@vehicles
+  end
+
+  def age
+    age_of_the_vehicle
+  end
+
+  # methods coming from 'Car' subclass
+  def accelerate(velocity = 1)
+    @speed += velocity
+  end
+
+  def brake(velocity = 1)
+    if @speed > 0 && @speed >= velocity
+      @speed -= velocity 
+    else
+      puts "You can't decrease that fast. Current speed => #{@speed}"
+    end
+  end
+  
+  def current_speed
+    @speed
+  end
+
+  def shutdown
+    @speed = 0
+  end
+
+  def spray(color)
+    @color = color
+  end
+
+  private
+
+  def age_of_the_vehicle
+    @@age = Time.now - @year
+  end
+end
+
+class Car < Vehicle
+  def initialize(year, model, color)
+    super(year, model, color)
+    @doors = 4
+  end
+
+  # def accelerate(velocity = 1)
+  #   @speed += speed
+  # end
+
+  # def brake(velocity = 1)
+  #   @speed -= speed if @speed > 0 && @speed >= velocity
+  # end
+  
+  # def current_speed
+  #   @speed
+  # end
+
+  # def shutdown
+  #   @speed = 0
+  # end
+
+  # def spray(color)
+  #   @color = color
+  # end
+end
+
+class Truck < Vehicle
+  def initialize(year, model, color)
+    super(year, model, color)
+    @doors = 2
+  end
+end
+
+# printing section
+
+puts "--\n\n"
+
+new_car = Car.new Time.new(1988, 1,1), 'sedan', 'blue'
+puts "Car object: #{new_car} =>"
+puts "Gas/Mileage: #{new_car.gas_mileage 3, 50.0}"
+
+puts "--\n\n"
+
+new_truck = Truck.new Time.new(1985, 1,1), 'Torton', 'black'
+puts "Truck object: #{new_truck}"
+
+puts "--\n\n"
+
+puts "Number of Vehicles created either being Trucks or Cars =>#{Vehicle::count}"
+
+new_car.accelerate 12
+puts "new_car current speed: #{new_car.current_speed}"
+new_car.brake 10
+puts "new_car current speed: #{new_car.current_speed}"
+new_car.brake 10
+puts "new_car current speed: #{new_car.current_speed}"
+new_car.shutdown
+puts "new_car current speed: #{new_car.current_speed}"
+puts "new_car's color: #{new_car.color}"
+new_color = 'black'
+puts "painting new_car with color #{new_color}..."
+new_car.spray new_color
+puts "now the new_car has a color #{new_car.color}"
+puts "age of new_car: #{new_car.age}"
+puts Time.now
