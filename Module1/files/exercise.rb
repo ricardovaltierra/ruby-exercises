@@ -75,7 +75,7 @@ end
 
 heroe_lines.each do |heroe, lines|
   file_content = { "#{heroe}": lines }
-  file = File.open("Module1/files/#{heroe}_lines.txt", "w")
+  file = File.open("Module1/files/#{heroe}_lines.json", "w")
   file.write(file_content.to_json)
   file.close
 end
@@ -87,7 +87,7 @@ puts "--\n\n"
 heroes = heroe_lines.map { |heroe, lines| heroe }
 
 json_read = heroes.map do |heroe|
-  file = File.open("Module1/files/#{heroe}_lines.txt", "r")
+  file = File.open("Module1/files/#{heroe}_lines.json", "r")
   json = file.readlines
   json_parsed = JSON.parse "#{json}"
   json_parsed = JSON.parse json_parsed[0]
