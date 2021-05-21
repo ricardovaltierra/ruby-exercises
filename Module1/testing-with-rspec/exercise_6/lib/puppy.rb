@@ -8,8 +8,12 @@ class Puppy
     @state = :calm
   end
 
+  def state=(new_state)
+    
+  end
+  
   def pet
-    # Your code here
+    puts "THIS IS AN UOTPUT: #{ #{parameterize("Donald E. Knuth", separator: '_')}}"
   end
 
   def rub_belly
