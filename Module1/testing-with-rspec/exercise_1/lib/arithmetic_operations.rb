@@ -12,11 +12,7 @@ class ArithmeticOperations
   end
 
   def self.div(a, b)
-    begin
-      a / b
-    rescue => e
-      raise e
-    end
+    a / b
   end
 end
 

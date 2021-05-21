@@ -1,20 +1,29 @@
 class StringCalculator
 
-  @@delimiters = ',|\n|;|\"|\'|\*|\{|\}|\[|\]|\(|\)|\\|\/|\|'
-  @@main_regex = Regexp.new "^[//(#{@@delimiters})\n]*[-?0-9+(#{@@delimiters})]*-?[0-9]$"
-  # @@main_regex = Regexp.new '^[//(#{@@delimiters})\n]*[-?0-9+(,|\n)]*-?[0-9]$' Pending to check
+  DELIMITERS = ',|\n|;|\"|\'|\*|\{|\}|\[|\]|\(|\)|\\|\/|\|'
+  MAIN_REGEX = Regexp.new "^[//(#{DELIMITERS})\n]*[-?0-9+(#{DELIMITERS})]*-?[0-9]$"
+  # MAIN_REGEX = Regexp.new '^[//(#{DELIMITERS})\n]*[-?0-9+(,|\n)]*-?[0-9]$' Pending to check
 
-  def self.add(string)
-    case string
-    when -> (string) { string.size.zero? }
+  def self.add(numbers_input)
+    case numbers_input
+    when -> (numbers_input) { numbers_input.size.zero? }
       0
-    when -> (string) { @@main_regex.match string }
-      numbers_array = string.split(Regexp.new @@delimiters).map(&:to_i).select { |number| number <= 1000 }
-      negatives = numbers_array.select(&:negative?)
+    when -> (numbers_input) { main_regex.match numbers_input }
+      numbers = numbers_input.split(Regexp.new DELIMITERS).map(&:to_i).select { |number| number <= 1000 }
+      negatives = numbers.select(&:negative?)
       return "Negatives not allowed. You passed #{negatives.join(',')}" if negatives.any? 
-      numbers_array.reduce(:+)
+      numbers.reduce(:+)
     else
       "ERROR"
     end
   end
+
+  private
+
+  def self.main_regex
+    Regexp.new "^[//(#{DELIMITERS})\n]*[-?0-9+(#{DELIMITERS})]*-?[0-9]$"
+  end
+
+  # Pending:
+  # Separate line #12/#13 in several separate private methods
 end

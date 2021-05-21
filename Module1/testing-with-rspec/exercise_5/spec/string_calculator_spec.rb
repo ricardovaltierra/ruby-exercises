@@ -93,8 +93,8 @@ describe StringCalculator do
       expect(result).to eql "Negatives not allowed. You passed -1,-2,-3"
     end
 
-    xit 'returns exception "ERROR" when passed the following string: "//|\n-1|-2|-3"' do
-      result = StringCalculator.add "//|\n-1|-2-3"
+    xit 'returns exception "ERROR" when passed the following string: "//,\n-1,-2-3"' do
+      result = StringCalculator.add "//,\n-1,-2-3"
 
       expect(result).to eql "ERROR"
     end

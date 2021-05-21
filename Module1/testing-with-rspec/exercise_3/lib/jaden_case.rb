@@ -1,5 +1,5 @@
 class JadenCased
   def self.tweet(philosophy)
-    philosophy.split(' ').map { |word| word.capitalize }.join ' '
+    philosophy.split(' ').map(&:capitalize).join ' '
   end
 end
