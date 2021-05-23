@@ -7,6 +7,16 @@ class PlayingCardDeck < Deck
     # your code here
   end
 
+  def suit=(playing_card)
+
+  end
+
+  def value
+  end
+
+  def inspect
+  end
+
   def deal_poker_hands(count)
     # your code here
   end

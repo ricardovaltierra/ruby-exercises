@@ -2,11 +2,11 @@ class Deck
   attr_reader :cards
 
   def initialize
-    @cards = []
+    @cards = (1..100).to_a
   end
 
   def shuffle
-    # your code here
+    
   end
 
   def deal
