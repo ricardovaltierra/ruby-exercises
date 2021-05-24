@@ -23,22 +23,18 @@ describe StringCalculator do
       expect(result).to eql 3
     end
 
-    it 'returns ERROR when passed the following string: "1 2"' do
-      result = StringCalculator.add '1 2'
+    it 'exception raised when passed the following string: "1 2"' do
 
-      expect(result).to eql "ERROR"
+      expect{ StringCalculator.add '1 2' }.to raise_error(RuntimeError, 'Input not allowed')
     end
 
-    it 'returns different from 3 when passed the following string: "12 "' do
-      result = StringCalculator.add '12 '
-
-      expect(result).not_to eql 3
+    it 'exception raised when passed the following string: "12 "' do
+      expect{ StringCalculator.add '12 ' }.to raise_error(RuntimeError, 'Input not allowed')
     end
 
-    it 'returns different from 5 when passed the following string: " 5 "' do
-      result = StringCalculator.add ' 5 '
+    it 'exception raised when passed the following string: " 5 "' do
 
-      expect(result).not_to eql 5 
+      expect{ StringCalculator.add ' 5 ' }.to raise_error(RuntimeError, 'Input not allowed')
     end
 
     # Allow the Add method to handle an unknown amount of numbers
@@ -55,10 +51,9 @@ describe StringCalculator do
       expect(result).to eql 6
     end
 
-    it 'returns ERROR when passed the following string: "1,\n"' do
-      result = StringCalculator.add "1,\n"
+    it 'exception raised when passed the following string: "1,\n"' do
 
-      expect(result).to eql "ERROR"
+      expect{ StringCalculator.add '12 ' }.to raise_error(RuntimeError, 'Input not allowed')
     end
 
     # Support different delimiters
@@ -81,22 +76,19 @@ describe StringCalculator do
     end
 
     # Calling Add with a negative number will throw an exception “negatives not allowed”
-    it 'returns exception "Negatives not allowed. You passed -1" when passed the following string: "//|\n-1|2"' do
-      result = StringCalculator.add "//|\n-1|2"
+    it 'exception raised "Negatives not allowed. You passed -1" when passed the following string: "//|\n-1|2"' do
+      # result = StringCalculator.add "//|\n-1|2"
 
-      expect(result).to eql "Negatives not allowed. You passed -1"
+      expect{ StringCalculator.add "//|\n-1|2" }.to raise_error(RuntimeError,  "Negatives not allowed. You passed -1")
+      # expect(result).to eql "Negatives not allowed. You passed -1"
     end
 
-    it 'returns exception "Negatives not allowed. You passed -1,-2,-3" when passed the following string: "//|\n-1|-2,-3"' do
-      result = StringCalculator.add "//|\n-1|-2,-3"
-
-      expect(result).to eql "Negatives not allowed. You passed -1,-2,-3"
+    it 'exception raised "Negatives not allowed. You passed -1,-2,-3" when passed the following string: "//|\n-1|-2,-3"' do
+      expect{ StringCalculator.add "//|\n-1|-2,-3" }.to raise_error(RuntimeError,  "Negatives not allowed. You passed -1,-2,-3")
     end
 
-    xit 'returns exception "ERROR" when passed the following string: "//,\n-1,-2-3"' do
-      result = StringCalculator.add "//,\n-1,-2-3"
-
-      expect(result).to eql "ERROR"
+    xit 'exception raised "Input not allowed" when passed the following string: "//,\n-1,-2-3"' do
+      expect{ StringCalculator.add "//,\n-1,-2-3" }.to raise_error(RuntimeError,  'Input not allowed')
     end
 
     # Numbers bigger than 1000 should be ignored, so adding 2 + 1001  = 2
@@ -106,10 +98,8 @@ describe StringCalculator do
       expect(result).to eql 2
     end
 
-    it 'returns exception "Negatives not allowed. You passed -2" when passing: "//|\n-2,1001"' do
-      result = StringCalculator.add "//|\n-2,1001"
-
-      expect(result).to eql "Negatives not allowed. You passed -2"
+    it 'exception raised "Negatives not allowed. You passed -2" when passing: "//|\n-2,1001"' do
+      expect{ StringCalculator.add "//|\n-2,1001" }.to raise_error(RuntimeError,  "Negatives not allowed. You passed -2")
     end
 
     it 'returns the value 1010 when passed the following string: "//|\n10,1000"' do
@@ -125,10 +115,8 @@ describe StringCalculator do
       expect(result).to eql 6
     end
 
-    it 'returns exception "ERROR" when passing: "//[***]\*n1***2***3"' do
-      result = StringCalculator.add "//[***]\*n1***2***3"
-
-      expect(result).to eql "ERROR"
+    it 'exception raised "Input not allowed" when passing: "//[***]\*n1***2***3"' do
+        expect{ StringCalculator.add "//[***]\*n1***2***3" }.to raise_error(RuntimeError,  'Input not allowed')
     end
   end
 end

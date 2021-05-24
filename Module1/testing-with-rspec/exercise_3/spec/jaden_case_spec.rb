@@ -22,6 +22,18 @@ describe JadenCased do
 
       expect(result).to eql "Beware Of Willow"
     end
+
+    it "Uncapitalized Jaden Smith phrase gets in, and an all-words capitalized phrase is received" do
+      result = JadenCased.tweet "How can mirrors be real if our eyes aren't real"
+
+      expect(result).to eql "How Can Mirrors Be Real If Our Eyes Aren't Real"
+    end
+
+    it "An empty string is received so empty string is returned" do
+      result = JadenCased.tweet ""
+
+      expect(result).to eql ""
+    end
     # Some possible test cases may still be missed
   end
 end
