@@ -2,6 +2,8 @@ require_relative './deck'
 require_relative './playing_card'
 
 class PlayingCardDeck < Deck
+  attr_accessor suit, value
+
   def initialize
     super
     # your code here
