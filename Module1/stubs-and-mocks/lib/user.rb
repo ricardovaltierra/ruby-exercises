@@ -2,7 +2,7 @@ class User
   attr_reader :email,
               :image_generator,
               :id,
-              :image_generator_objects
+              :image_generator_objects    # => unused variable. Possibly born on add_image_history
 
   def initialize(email, image_generator)
     @email = email
@@ -30,7 +30,8 @@ class User
 
   def assign_new_random_image
     @profile_image = random_image
-    add_image_history(image)
+    # Unimplemented method.
+    # add_image_history(@profile_image)
   end
 
   def random_image

@@ -4,6 +4,14 @@ You're building a machine that dispenses change at a supermarket counter. Your m
 
 When the customer checks out and pays with cash, the register will tell you how much the stuff cost and how much the customer paid. You'll have to dispense the exact change by calling `quarter`, `dime`, `nickel`, and `penny` to give the customer each coin.
 
+Coin values:
+
+`quarter`: 25 cents
+`dime`: 10 cents
+`nickel`: 5 cents
+`penny`: 1 cent
+
+
 # Usage
 
 Edit `lib/change_machine.rb` to build your change machine's functionality. We've given you the basic structure of your new change machine.
